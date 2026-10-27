@@ -28,7 +28,11 @@
 import torch
 import librosa
 import logging
+from pathlib import Path
 from transformers import logging as transformers_logging, SeamlessM4TFeatureExtractor, AutoModelForAudioClassification
+
+SCRIPT_DIR = Path(__file__).parent
+AUDIO_DIR = SCRIPT_DIR / "audios"
 
 transformers_logging.set_verbosity_error()
 logging.getLogger("transformers").setLevel(logging.ERROR)
@@ -124,4 +128,4 @@ def classifier(audio_path):
     return all_predictions
 
 # Ejecución de prueba
-print(categorizar_llamada_ajustada(classifier(audio_path="./audios/frustracion/impaciente-2-banco-occidente-usuario-turno-4.wav")))
+print(categorizar_llamada_ajustada(classifier(audio_path=f"{AUDIO_DIR}/frustracion/frustracion-banco-occidente-usuario-8.wav")))
