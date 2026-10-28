@@ -2,8 +2,8 @@
 
 ### Disclaimer 
 _THIS IS AN EXPERIMENTAL REPOSITORY. 
-THESE PRE-TRAINED ALGORITHMS DOES NOT ENSURE A 100% ACCURACY IN EMOTION RECOGNITION
-AND MOST OF THEM WOULD RETURN FALSE POSITIVES IN SOME DEGREE.
+THESE PRE-TRAINED ALGORITHMS DO NOT ENSURE A 100% ACCURACY IN SPEECH EMOTION RECOGNITION
+AND MOST OF THEM WOULD RETURN FALSE POSITIVES OR NEGATIVES IN SOME DEGREE.
 THE GOAL OF THIS REPO IS TO IDENTIFY AND TEST PRE-TRAINED MODELS FROM HUGGING FACE
 AS PART OF THE ARCHITECTURAL DESIGN OF EMPATIA_
 
@@ -16,12 +16,15 @@ a las caracteristicas de entonación de los usuarios y a la escala de análisis 
 Los dataset cumple con las siguientes caracteristicas para poder evaluar la precision de los modelos de acuerdo a los requisitos
 funcionales y no funcionales del analisis de sentimiento de empatia:
 
-- Duración entre 2 segundos y 13 segundos.
+- Duración entre 2 segundos y 16 segundos.
 - Tamaño de 20 audios por escala (muestra pequeña debido al margén de tiempo y limitaciones de los recursos).
 - Formato .wav
 
 **Modelo UMUTeam/w2v-bert-emotion-es** 
-- Entorno de ejecución: local
+- Descripción: modelo de clasificación de audio (SER) en español basado en wav2vec2-bert, etiquetado para reconocimiento de emociones.
+- Autor(es): UMUTeam - Universidad de Murcia.
+- Repositorio de modelo: https://github.com/NLP-UMUTeam/umuteam-speech-emotion
+- Entorno de ejecución: **local**
 - Resultados:
 
 ## Frustration folder (`audios/frustracion/`)
@@ -91,6 +94,10 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 | neutral | 6 |
 | sadness | 5 |
 | joy | 0 |
+
+- Uso de CPU/GPU: Para la muestra de audios descrita anteriormente, basta con la CPU. No hay evidencia de la necesita de uso de gpu para el tipo de audio seleccionados.
+- Duración esperada (200 ms en caliente con el modelo ya cargado en memoria): 
+- **Conclusión**: 
 
 
 
