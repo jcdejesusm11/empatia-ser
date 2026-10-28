@@ -19,6 +19,13 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Duración entre 2 segundos y 16 segundos.
 - Tamaño de 20 audios por escala (muestra pequeña debido al margén de tiempo y limitaciones de los recursos).
 - Formato .wav
+- Frecuencia de muestreo: 8 kHz
+- Mayormente audio télefonico.
+
+#### Entorno local
+- CPU: 12TH Gen intel(R) Core (TM) i7-12800H - 2,40ghZ
+- Memoria: 32 GB DDR5 SODIMM
+- GPU: 1. Intel(R) UHD Graphics - 1,0/15,8 GB / 2. NVIDIA T600 Laptop GPU - 0,0/4 GB
 
 #### Modelo UMUTeam/w2v-bert-emotion-es
 
