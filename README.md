@@ -96,7 +96,9 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 | joy | 0 |
 
 - Uso de CPU/GPU: Para la muestra de audios descrita anteriormente, basta con la CPU. No hay evidencia de la necesita de uso de gpu para el tipo de audio seleccionados.
-- Duración esperada (200 ms en caliente con el modelo ya cargado en memoria): 
+- Promedio de duración en segundos "en caliente" data la muestra dada (40 audios): **3.182 segundos**
+- Promedio de duración en segundos "semi-frio" (tiempo de carga de librerias, archivos, etc incluidos) para cada audio dada la muestra dada (40 audios): **14.34 segundos**
+- ¿Duración de inferencia esperada (200 ms en caliente con el modelo ya cargado en memoria)?: **Localmente: NO**
 - **Conclusión**: 
 
 
