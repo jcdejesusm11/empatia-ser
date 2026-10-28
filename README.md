@@ -27,9 +27,9 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Entorno de ejecución: **local**
 - Resultados:
 
-## Frustration folder (`audios/frustracion/`)
+## Frustación (`audios/frustracion/`)
 
-**Expected category:** MEDIUM · **Correct:** 13/20 (65%) · **Missed (LOW):** 7/20 (35%)
+**Categoría esperada:** MEDIUM · **Correctos:** 13/20 (65%) · **Incorrectos (LOW):** 7/20 (35%)
 
 | Audio | Top emotion | Confidence | SS | Category | Correct |
 |---|---|---:|---:|---|:---:|
@@ -61,9 +61,9 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 | sadness | 5 |
 | joy | 1 |
 
-## Neutral folder (`audios/neutral/`)
+## Neutral (`audios/neutral/`)
 
-**Expected category:** LOW · **Correct:** 7/20 (35%) · **False positives (MEDIUM):** 13/20 (65%)
+**Categoría esperada:** LOW · **Correcto:** 7/20 (35%) · **Falso positivos (MEDIUM):** 13/20 (65%)
 
 | Audio | Top emotion | Confidence | SS | Category | Correct |
 |---|---|---:|---:|---|:---:|
