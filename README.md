@@ -99,7 +99,15 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Promedio de duración en segundos "en caliente" data la muestra dada (40 audios): **3.182 segundos**
 - Promedio de duración en segundos "semi-frio" (tiempo de carga de librerias, archivos, etc incluidos) para cada audio dada la muestra dada (40 audios): **14.34 segundos**
 - ¿Duración de inferencia esperada (200 ms en caliente con el modelo ya cargado en memoria)?: **Localmente: NO**
-- **Conclusión**: 
 
+## Conclusiones y recomendaciones:
+El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple los requisitos para producción. En nuestras llamadas reales no logra distinguir a un cliente frustrado de uno tranquilo: acierta tanto como lanzar una moneda. Además, sin una tarjeta gráfica (GPU) tarda más de 10 veces el tiempo permitido. La causa principal es que el modelo **posiblemente** aprendió con videos de YouTube en español, y nuestras grabaciones son llamadas telefónicas colombianas, que suenan muy distinto. No recomendamos usarlo tal como está. Recomendamos adaptarlo con nuestras propias grabaciones antes de volver a evaluarlo.
 
+- Hardware. El modelo no exige GPU para funcionar: todas las pruebas corrieron en CPU. Pero sí la exige para cumplir la latencia. Los requisitos 1 y 2 no pueden cumplirse a la vez con este modelo completo. Una alternativa que reduciría costos es usar solo las capas intermedias del modelo con un clasificador propio, lo que bajaría el cómputo de 2 a 3 veces.
+
+- Robustez acústica en español. Es el principal incumplimiento. Con 20 audios de frustración y 20 neutrales, el modelo clasificó como “frustración o insatisfacción” al 65% de ambos grupos. No separa las clases: la exactitud balanceada es de 50%, equivalente al azar. Además, es excesivamente confiado: la mayoría de las predicciones superan el 97% de confianza, sean correctas o no. Las causas identificadas son tres:
+
+- Entrenamiento: El modelo se entrenó con Spanish MEACorpus 2023 (YouTube, banda ancha, mayormente español peninsular), mientras que nuestras llamadas son telefónicas a 8 kHz con acento colombiano. Los propios autores advierten que el rendimiento cae con acentos marcados, audio de baja calidad y cambios de dominio. La emoción miedo tuvo solo 26 ejemplos de entrenamiento, así que sus predicciones no son confiables.
+
+- Mapeo de emociones. El toolkit entrega exactamente seis emociones con sus probabilidades: anger, disgust, fear, joy, neutral, sadness. Esto permite construir la fórmula de Sentimiento (−1 a 1) asignando a cada emoción un valor de positividad (valencia). Al restar el valor de azar (1/6) a cada probabilidad, solo cuenta lo que cada emoción tiene por encima de una predicción aleatoria. Esto evita que el residuo repartido entre las cuatro emociones negativas sesgue el resultado. Si ninguna emoción supera el azar, el fragmento se marca como incierto y no se usa para decidir. Los valores de valencia son un punto de partida y deben calibrarse con datos etiquetados. Con el comportamiento actual del modelo, esta fórmula daría Sentimiento negativo también en llamadas tranquilas. Con respecto al valor Sentiment Score de 0 a 100 (LOW / MEDIUM / HIGH), ya existe la fórmula equivalente: mide intensidad de riesgo en lugar de positividad.
 
