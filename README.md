@@ -20,14 +20,15 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Tamaño de 20 audios por escala (muestra pequeña debido al margén de tiempo y limitaciones de los recursos).
 - Formato .wav
 
-**Modelo UMUTeam/w2v-bert-emotion-es** 
+#### Modelo UMUTeam/w2v-bert-emotion-es
+
 - Descripción: modelo de clasificación de audio (SER) en español basado en wav2vec2-bert, etiquetado para reconocimiento de emociones.
 - Autor(es): UMUTeam - Universidad de Murcia.
 - Repositorio de modelo: https://github.com/NLP-UMUTeam/umuteam-speech-emotion
 - Entorno de ejecución: **local**
 - Resultados:
 
-## Frustación (`audios/frustracion/`)
+#### Frustación (`audios/frustracion/`)
 
 **Categoría esperada:** MEDIUM · **Correctos:** 13/20 (65%) · **Incorrectos (LOW):** 7/20 (35%)
 
@@ -61,7 +62,7 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 | sadness | 5 |
 | joy | 1 |
 
-## Neutral (`audios/neutral/`)
+#### Neutral (`audios/neutral/`)
 
 **Categoría esperada:** LOW · **Correcto:** 7/20 (35%) · **Falso positivos (MEDIUM):** 13/20 (65%)
 
@@ -100,7 +101,7 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Promedio de duración en segundos "semi-frio" (tiempo de carga de librerias, archivos, etc incluidos) para cada audio dada la muestra dada (40 audios): **14.34 segundos**
 - ¿Duración de inferencia esperada (200 ms en caliente con el modelo ya cargado en memoria)?: **Localmente: NO**
 
-## Conclusiones y recomendaciones:
+#### Conclusiones y recomendaciones:
 El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple los requisitos para producción. En nuestras llamadas reales no logra distinguir a un cliente frustrado de uno tranquilo: acierta tanto como lanzar una moneda. Además, sin una tarjeta gráfica (GPU) tarda más de 10 veces el tiempo permitido. La causa principal es que el modelo **posiblemente** aprendió con videos de YouTube en español, y nuestras grabaciones son llamadas telefónicas colombianas, que suenan muy distinto. No recomendamos usarlo tal como está. Recomendamos adaptarlo con nuestras propias grabaciones antes de volver a evaluarlo.
 
 - Hardware. El modelo no exige GPU para funcionar: todas las pruebas corrieron en CPU. Pero sí la exige para cumplir la latencia. Los requisitos 1 y 2 no pueden cumplirse a la vez con este modelo completo. Una alternativa que reduciría costos es usar solo las capas intermedias del modelo con un clasificador propio, lo que bajaría el cómputo de 2 a 3 veces.
@@ -111,3 +112,10 @@ El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple l
 
 - Mapeo de emociones. El toolkit entrega exactamente seis emociones con sus probabilidades: anger, disgust, fear, joy, neutral, sadness. Esto permite construir la fórmula de Sentimiento (−1 a 1) asignando a cada emoción un valor de positividad (valencia). Al restar el valor de azar (1/6) a cada probabilidad, solo cuenta lo que cada emoción tiene por encima de una predicción aleatoria. Esto evita que el residuo repartido entre las cuatro emociones negativas sesgue el resultado. Si ninguna emoción supera el azar, el fragmento se marca como incierto y no se usa para decidir. Los valores de valencia son un punto de partida y deben calibrarse con datos etiquetados. Con el comportamiento actual del modelo, esta fórmula daría Sentimiento negativo también en llamadas tranquilas. Con respecto al valor Sentiment Score de 0 a 100 (LOW / MEDIUM / HIGH), ya existe la fórmula equivalente: mide intensidad de riesgo en lugar de positividad.
 
+#### Modelo harshit345/xlsr-wav2vec-speech-emotion-recognition 
+- Descripción: modelo de clasificación de audio (SER) basado en wav2vec 2.0 XLSR-53. La información en su ficha es engañosa e inconsistente pues la etiqueta de dataset es un corpus griego de habla actuada NO español.
+**Ademas es desactualizado (su ultima actualización fue hace 5 años).** y necesita mucha actualización técnica para adaptarlo a los escenarios requeridos.
+- Autor(es): Desconocido (1 solo contributor).
+
+#### Conclusiones y recomendaciones
+No se recomienda usar dicho modelo en entornos productivos.
