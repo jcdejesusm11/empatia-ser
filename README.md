@@ -1,16 +1,13 @@
 # EmpaIA - SPEECH EMOTION RECOGNITION
 
-### Disclaimer 
+## Disclaimer 
 _THIS IS AN EXPERIMENTAL REPOSITORY. 
 THESE PRE-TRAINED ALGORITHMS DO NOT ENSURE A 100% ACCURACY IN SPEECH EMOTION RECOGNITION
 AND MOST OF THEM WOULD RETURN FALSE POSITIVES OR NEGATIVES IN SOME DEGREE.
 THE GOAL OF THIS REPO IS TO IDENTIFY AND TEST PRE-TRAINED MODELS FROM HUGGING FACE
 AS PART OF THE ARCHITECTURAL DESIGN OF EMPATIA_
 
-
-### Benchmarking
-
-#### Dataset
+## Dataset
 Basado en los audios/transcripciones generados en entornos productivos, se generaron set de audios de acuerdo
 a las caracteristicas de entonación de los usuarios y a la escala de análisis de sentimiento existente (neutral, frustración, otro).
 Los dataset cumple con las siguientes caracteristicas para poder evaluar la precision de los modelos de acuerdo a los requisitos
@@ -22,12 +19,14 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 - Frecuencia de muestreo: 8 kHz
 - Mayormente audio télefonico.
 
-#### Entorno local
+## Entorno local
 - CPU: 12TH Gen intel(R) Core (TM) i7-12800H - 2,40ghZ
 - Memoria: 32 GB DDR5 SODIMM
 - GPU: 1. Intel(R) UHD Graphics - 1,0/15,8 GB / 2. NVIDIA T600 Laptop GPU - 0,0/4 GB
 
-#### Modelo UMUTeam/w2v-bert-emotion-es
+## Evidencias
+
+### Modelo UMUTeam/w2v-bert-emotion-es
 
 - Descripción: modelo de clasificación de audio (SER) en español basado en wav2vec2-bert, etiquetado para reconocimiento de emociones.
 - Autor(es): UMUTeam - Universidad de Murcia.
@@ -119,7 +118,7 @@ El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple l
 
 - Mapeo de emociones. El toolkit entrega exactamente seis emociones con sus probabilidades: anger, disgust, fear, joy, neutral, sadness. Esto permite construir la fórmula de Sentimiento (−1 a 1) asignando a cada emoción un valor de positividad (valencia). Al restar el valor de azar (1/6) a cada probabilidad, solo cuenta lo que cada emoción tiene por encima de una predicción aleatoria. Esto evita que el residuo repartido entre las cuatro emociones negativas sesgue el resultado. Si ninguna emoción supera el azar, el fragmento se marca como incierto y no se usa para decidir. Los valores de valencia son un punto de partida y deben calibrarse con datos etiquetados. Con el comportamiento actual del modelo, esta fórmula daría Sentimiento negativo también en llamadas tranquilas. Con respecto al valor Sentiment Score de 0 a 100 (LOW / MEDIUM / HIGH), ya existe la fórmula equivalente: mide intensidad de riesgo en lugar de positividad.
 
-#### Modelo harshit345/xlsr-wav2vec-speech-emotion-recognition 
+### Modelo harshit345/xlsr-wav2vec-speech-emotion-recognition 
 - Descripción: modelo de clasificación de audio (SER) basado en wav2vec 2.0 XLSR-53. La información en su ficha es engañosa e inconsistente pues la etiqueta de dataset es un corpus griego de habla actuada NO español.
 **Ademas es desactualizado (su ultima actualización fue hace 5 años).** y necesita mucha actualización técnica para adaptarlo a los escenarios requeridos.
 - Autor(es): 1 solo contributor.
@@ -127,7 +126,7 @@ El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple l
 #### Conclusiones y recomendaciones
 No se recomienda usar dicho modelo en entornos productivos.
 
-#### Modelo somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd
+### Modelo somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd
 - Descripción: modelo de clasificación de audio (SER) en español (Méxicano) basado en ajuste fino (o "fine-tuning") sobre la versión de facebook/wav2vec2-base. Utiliza como dataset de entrenamiento la base de datos del discurso emocional Mexicano (MESD en inglés).
 Utilizarón muestra de audios de 1 segundo de duración grabados o generados bajo condiciones especiales (
 - Autor(es): 3 contributores
