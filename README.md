@@ -228,3 +228,5 @@ Utilizarón muestra de audios de 1 segundo de duración grabados o generados baj
   Solo 20% fueron identificados correctamente, lo cual es una taza muy baja para los requisitos o umbrales esperados en empatia.**
 
   Se podría realizar una nueva iteración con este modelo pero con set de audios de entre 2 y 4 segundos de duración y volver a analizar los resultados.
+
+  ### Modelo emotion2vec/emotion2vec_plus_base
