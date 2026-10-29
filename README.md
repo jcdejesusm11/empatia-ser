@@ -37,7 +37,7 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 
 #### Frustación (`audios/frustracion/`)
 
-**Categoría esperada:** MEDIUM · **Correctos:** 13/20 (65%) · **Incorrectos (LOW):** 7/20 (35%)
+**Categoría esperada:** MEDIUM · **Correctos:** 13/20 (65%) · **Falso negativos - incorrectos (LOW):** 7/20 (35%)
 
 | Audio | Top emotion | Confidence | SS | Category | Correct |
 |---|---|---:|---:|---|:---:|
@@ -71,7 +71,7 @@ funcionales y no funcionales del analisis de sentimiento de empatia:
 
 #### Neutral (`audios/neutral/`)
 
-**Categoría esperada:** LOW · **Correcto:** 7/20 (35%) · **Falso positivos (MEDIUM):** 13/20 (65%)
+**Categoría esperada:** LOW · **Correcto:** 7/20 (35%) · **Falso negativos - incorrectos (MEDIUM):** 13/20 (65%)
 
 | Audio | Top emotion | Confidence | SS | Category | Correct |
 |---|---|---:|---:|---|:---:|
@@ -122,7 +122,84 @@ El modelo funciona y entrega las emociones que necesitamos, pero hoy no cumple l
 #### Modelo harshit345/xlsr-wav2vec-speech-emotion-recognition 
 - Descripción: modelo de clasificación de audio (SER) basado en wav2vec 2.0 XLSR-53. La información en su ficha es engañosa e inconsistente pues la etiqueta de dataset es un corpus griego de habla actuada NO español.
 **Ademas es desactualizado (su ultima actualización fue hace 5 años).** y necesita mucha actualización técnica para adaptarlo a los escenarios requeridos.
-- Autor(es): Desconocido (1 solo contributor).
+- Autor(es): 1 solo contributor.
 
 #### Conclusiones y recomendaciones
 No se recomienda usar dicho modelo en entornos productivos.
+
+#### Modelo somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd
+- Descripción: modelo de clasificación de audio (SER) en español (Méxicano) basado en ajuste fino (o "fine-tuning") sobre la versión de facebook/wav2vec2-base. Utiliza como dataset de entrenamiento la base de datos del discurso emocional Mexicano (MESD en inglés).
+- Autor(es): 3 contributores
+- Repositorio de modelo: N/A
+- Entorno de ejecución: **local**
+- Resultados:
+
+#### Frustración (`audios/frustracion/`)
+
+**Categoría esperada:** MEDIUM · **Correctos (MEDIUM):** 7/20 (35%) · **Correctos pero sobreestimados  -  (HIGH):** 8/20 (40%) · **Falso negativos - incorrectos (LOW):** 5/20 (25%)
+
+| Audio | Top emotion | Confidence | SS | Category | Correct |
+|---|---|---:|---:|---|:---:|
+| usuario-1 | anger | 84.0% | 95.0 | HIGH | ⚠️ |
+| usuario-2 | anger | 40.7% | 77.7 | HIGH | ⚠️ |
+| usuario-3 | neutral | 89.5% | 20.0 | LOW | ❌ |
+| usuario-4 | anger | 87.6% | 95.0 | HIGH | ⚠️ |
+| usuario-5 | neutral | 62.9% | 25.5 | LOW | ❌ |
+| usuario-6 | joy | 43.1% | 28.1 | LOW | ❌ |
+| usuario-7 | anger | 84.1% | 95.0 | HIGH | ⚠️ |
+| usuario-8 | anger | 35.9% | 69.3 | MEDIUM | ✅ |
+| usuario-9 | neutral | 48.5% | 27.5 | LOW | ❌ |
+| usuario-10 | disgust | 39.3% | 40.4 | MEDIUM | ✅ |
+| usuario-11 | disgust | 88.0% | 60.0 | MEDIUM | ✅ |
+| usuario-12 | disgust | 69.5% | 60.0 | MEDIUM | ✅ |
+| usuario-13 | disgust | 85.8% | 60.0 | MEDIUM | ✅ |
+| usuario-14 | neutral | 73.9% | 20.0 | LOW | ❌ |
+| usuario-15 | disgust | 82.0% | 60.0 | MEDIUM | ✅ |
+| usuario-16 | anger | 62.7% | 93.7 | HIGH | ⚠️ |
+| usuario-17 | disgust | 73.4% | 60.0 | MEDIUM | ✅ |
+| usuario-18 | anger | 73.5% | 95.0 | HIGH | ⚠️ |
+| usuario-19 | disgust | 46.4% | 72.7 | HIGH | ⚠️ |
+| usuario-20 | fear | 60.7% | 75.0 | HIGH | ⚠️ |
+
+| Top emotion | Count |
+|---|---:|
+| anger | 7 |
+| disgust | 7 |
+| neutral | 4 |
+| fear | 1 |
+| joy | 1 |
+
+#### Neutral (`audios/neutral/`)
+
+**Categoría esperada:** LOW · **Correctos (LOW):** 4/20 (20%) · **Falsos negativos (MEDIUM):** 11/20 (55%) · **Falsos negativos (HIGH):** 5/20 (25%)
+
+| Audio | Top emotion | Confidence | SS | Category | Correct |
+|---|---|---:|---:|---|:---:|
+| usuario-1 | disgust | 55.3% | 60.4 | MEDIUM | ❌ |
+| usuario-2 | disgust | 51.9% | 56.0 | MEDIUM | ❌ |
+| usuario-3 | neutral | 90.5% | 20.0 | LOW | ✅ |
+| usuario-4 | sadness | 79.9% | 55.0 | MEDIUM | ❌ |
+| usuario-5 | neutral | 89.6% | 20.0 | LOW | ✅ |
+| usuario-6 | neutral | 86.4% | 20.0 | LOW | ✅ |
+| usuario-7 | anger | 77.1% | 95.0 | HIGH | ❌ |
+| usuario-8 | anger | 72.4% | 95.0 | HIGH | ❌ |
+| usuario-9 | anger | 55.0% | 68.7 | MEDIUM | ❌ |
+| usuario-10 | anger | 66.2% | 95.0 | HIGH | ❌ |
+| usuario-11 | disgust | 46.6% | 35.4 | LOW | ✅ |
+| usuario-12 | anger | 68.6% | 84.5 | HIGH | ❌ |
+| usuario-13 | fear | 61.5% | 71.5 | HIGH | ❌ |
+| usuario-14 | sadness | 27.8% | 63.7 | MEDIUM | ❌ |
+| usuario-15 | sadness | 44.5% | 57.6 | MEDIUM | ❌ |
+| usuario-16 | sadness | 44.8% | 64.8 | MEDIUM | ❌ |
+| usuario-17 | sadness | 45.0% | 63.5 | MEDIUM | ❌ |
+| usuario-18 | sadness | 82.2% | 55.0 | MEDIUM | ❌ |
+| usuario-19 | sadness | 70.5% | 55.0 | MEDIUM | ❌ |
+| usuario-20 | sadness | 75.4% | 55.0 | MEDIUM | ❌ |
+
+| Top emotion | Count |
+|---|---:|
+| sadness | 8 |
+| anger | 5 |
+| disgust | 3 |
+| neutral | 3 |
+| fear | 1 |
