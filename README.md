@@ -129,6 +129,7 @@ No se recomienda usar dicho modelo en entornos productivos.
 
 #### Modelo somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd
 - Descripción: modelo de clasificación de audio (SER) en español (Méxicano) basado en ajuste fino (o "fine-tuning") sobre la versión de facebook/wav2vec2-base. Utiliza como dataset de entrenamiento la base de datos del discurso emocional Mexicano (MESD en inglés).
+Utilizarón muestra de audios de 1 segundo de duración grabados o generados bajo condiciones especiales (
 - Autor(es): 3 contributores
 - Repositorio de modelo: N/A
 - Entorno de ejecución: **local**
@@ -203,3 +204,28 @@ No se recomienda usar dicho modelo en entornos productivos.
 | disgust | 3 |
 | neutral | 3 |
 | fear | 1 |
+
+- Uso de CPU/GPU: Para la muestra de audios descrita anteriormente, basta con la CPU. No hay evidencia de la necesita de uso de gpu para el tipo de audio seleccionados.
+- Promedio de duración en segundos "en caliente" data la muestra dada (40 audios): **0.3623 segundos - 362.3 ms**
+- Promedio de duración en segundos "semi-frio" (tiempo de carga de librerias, archivos, etc incluidos) para cada audio dada la muestra dada (40 audios): **N/A**
+- ¿Duración de inferencia esperada (200 ms en caliente con el modelo ya cargado en memoria)?: **Localmente: Probablemente si la duración de los audios son entre 2 y 4 segundos. Audios mayores a 5 segundos supera el umbral. En el experimento se evidencia que: < 200 ms: 13/40 (32%)**.
+
+  #### Conclusiones y recomendaciones
+
+  El modelo _somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd_ es mucho mejor en atencia o duración "en caliente" que el modelo _harshit345/xlsr-wav2vec-speech-emotion-recognition_ para el mismo set de datos.
+
+  | Audios | Cantidad | Promedio | Mediana | p95 | Bajo 200 ms |
+  |---|---:|---:|---:|---:|---:|
+  | De 3 a 5 s | 8 | 196 ms | 196 ms | — | 5/8 (63%) |
+  | Todos (0.8 a 23.4 s) | 40 | 362 ms | 254 ms | 861 ms | 13/40 (32%) |
+
+  | Duración del fragmento | Latencia estimada | Cumple < 200 ms |
+  |---|---:|:---:|
+  | 3 s | ~144 ms | ✅ |
+  | 4 s | ~193 ms | ✅ (al límite) |
+  | 5 s | ~242 ms | ❌ |
+
+  Sin embargo, la precisión de este modelo es igual o peor que _harshit345/xlsr-wav2vec-speech-emotion-recognition_. **No logra identificar/clasificar claramente los audios neutrales correctamente.
+  Solo 20% fueron identificados correctamente, lo cual es una taza muy baja para los requisitos o umbrales esperados en empatia.**
+
+  Se podría realizar una nueva iteración con este modelo pero con set de audios de entre 2 y 4 segundos de duración y volver a analizar los resultados.
