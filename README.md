@@ -7,6 +7,12 @@ AND MOST OF THEM WOULD RETURN FALSE POSITIVES OR NEGATIVES IN SOME DEGREE.
 THE GOAL OF THIS REPO IS TO IDENTIFY AND TEST PRE-TRAINED MODELS FROM HUGGING FACE
 AS PART OF THE ARCHITECTURAL DESIGN OF EMPATIA_
 
+## Indice
+- [umuteamw2v-bert-emotion-es](#modelo-umuteamw2v-bert-emotion-es)
+- [harshit345xlsr-wav2vec-speech-emotion-recognition](#modelo-harshit345xlsr-wav2vec-speech-emotion-recognition)
+- [somosnlp-hackathon-2022/wav2vec2-base-finetuned-sentiment-mesd](#modelo-somosnlp-hackathon-2022wav2vec2-base-finetuned-sentiment-mesd)
+- [emotion2vec/emotion2vec_plus_base](#modelo-emotion2vecemotion2vec_plus_base)
+
 ## Dataset
 Basado en los audios/transcripciones generados en entornos productivos, se generaron set de audios de acuerdo
 a las caracteristicas de entonación de los usuarios y a la escala de análisis de sentimiento existente (neutral, frustración, otro).
