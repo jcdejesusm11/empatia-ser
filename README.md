@@ -235,7 +235,7 @@ Utilizarón muestra de audios de 1 segundo de duración grabados o generados baj
 
   Se podría realizar una nueva iteración con este modelo pero con set de audios de entre 2 y 4 segundos de duración y volver a analizar los resultados.
 
-  ### Modelo emotion2vec/emotion2vec_plus_base
+### Modelo emotion2vec/emotion2vec_plus_base
   
 - Descripción: modelo de clasificación de audio (SER) para reconocimiento de emociones por voz
 - Autor(es): 2 contributores
