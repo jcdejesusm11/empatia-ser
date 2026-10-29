@@ -236,3 +236,75 @@ Utilizarón muestra de audios de 1 segundo de duración grabados o generados baj
   Se podría realizar una nueva iteración con este modelo pero con set de audios de entre 2 y 4 segundos de duración y volver a analizar los resultados.
 
   ### Modelo emotion2vec/emotion2vec_plus_base
+  
+- Descripción: modelo de clasificación de audio (SER) para reconocimiento de emociones por voz
+- Autor(es): 2 contributores
+- Repositorio de modelo: [N/A](https://huggingface.co/emotion2vec/emotion2vec_plus_base)
+- Entorno de ejecución: **local**
+- Resultados:
+- 
+#### Frustración (`audios_recortados/frustracion/`)
+
+**Categoría esperada:** MEDIUM · **Correctos (MEDIUM):** 1/19 (5%) · **Falsos negativos - Sobreestimados (HIGH):** 5/19 (26%) · **Falsos negativos - Incorrectos (LOW):** 13/19 (68%)
+
+| Audio | Top emotion | Confidence | SS | Category | Correct |
+|---|---|---:|---:|---|:---:|
+| usuario-1 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-2 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-3 | anger | 70.5% | 82.2 | HIGH | ⚠️ |
+| usuario-4 | anger | 99.3% | 95.0 | HIGH | ⚠️ |
+| usuario-5 | neutral | 97.5% | 20.0 | LOW | ❌ |
+| usuario-6 | anger | 100.0% | 95.0 | HIGH | ⚠️ |
+| usuario-7 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-8 | anger | 81.5% | 95.0 | HIGH | ⚠️ |
+| usuario-9 | anger | 95.7% | 95.0 | HIGH | ⚠️ |
+| usuario-10 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-11 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-12 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-13 | surprise | 65.2% | 45.7 | MEDIUM | ✅ |
+| usuario-14 | joy | 95.9% | 0.0 | LOW | ❌ |
+| usuario-15 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-16 | neutral | 100.0% | 20.0 | LOW | ❌ |
+| usuario-17 | neutral | 99.9% | 20.0 | LOW | ❌ |
+| usuario-18 | joy | 100.0% | 0.0 | LOW | ❌ |
+| usuario-19 | neutral | 100.0% | 20.0 | LOW | ❌ |
+
+| Top emotion | Count |
+|---|---:|
+| neutral | 11 |
+| anger | 5 |
+| joy | 2 |
+| surprise | 1 |
+
+#### Neutral (`audios_recortados/neutral/`)
+
+**Categoría esperada:** LOW · **Correctos (LOW):** 15/19 (79%) · **Falsos negativos (MEDIUM):** 3/19 (16%) · **Falsos negativos (HIGH):** 1/19 (5%)
+
+| Audio | Top emotion | Confidence | SS | Category | Correct |
+|---|---|---:|---:|---|:---:|
+| usuario-1 | joy | 51.5% | 6.9 | LOW | ✅ |
+| usuario-2 | neutral | 100.0% | 20.0 | LOW | ✅ |
+| usuario-3 | joy | 81.3% | 1.1 | LOW | ✅ |
+| usuario-4 | joy | 99.6% | 0.0 | LOW | ✅ |
+| usuario-5 | neutral | 93.5% | 20.0 | LOW | ✅ |
+| usuario-6 | neutral | 95.8% | 20.0 | LOW | ✅ |
+| usuario-7 | neutral | 99.8% | 20.0 | LOW | ✅ |
+| usuario-8 | neutral | 100.0% | 20.0 | LOW | ✅ |
+| usuario-9 | neutral | 93.3% | 20.0 | LOW | ✅ |
+| usuario-10 | joy | 100.0% | 0.0 | LOW | ✅ |
+| usuario-11 | neutral | 67.9% | 15.2 | LOW | ✅ |
+| usuario-12 | neutral | 77.4% | 19.5 | LOW | ✅ |
+| usuario-13 | neutral | 100.0% | 20.0 | LOW | ✅ |
+| usuario-14 | neutral | 100.0% | 20.0 | LOW | ✅ |
+| usuario-15 | sadness | 99.8% | 55.0 | MEDIUM | ❌ |
+| usuario-16 | neutral | 100.0% | 20.0 | LOW | ✅ |
+| usuario-17 | fear | 94.7% | 75.0 | HIGH | ❌ |
+| usuario-18 | fear | 53.8% | 68.8 | MEDIUM | ❌ |
+| usuario-19 | sadness | 71.4% | 58.8 | MEDIUM | ❌ |
+
+| Top emotion | Count |
+|---|---:|
+| neutral | 11 |
+| joy | 4 |
+| sadness | 2 |
+| fear | 2 |
